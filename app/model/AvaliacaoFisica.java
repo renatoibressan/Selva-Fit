@@ -3,11 +3,13 @@ package app.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import app.exception.DadoInvalidoException;
 
 public class AvaliacaoFisica {
     
+    private UUID id;
     private LocalDate data;
     private double peso;
     private double cintura;
@@ -20,6 +22,14 @@ public class AvaliacaoFisica {
 
     public AvaliacaoFisica() {
         this.observacoes = new ArrayList<>();
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public LocalDate getData() {
@@ -113,6 +123,19 @@ public class AvaliacaoFisica {
 
     public void setObservacoes(List<Observacao> observacoes) {
         this.observacoes = observacoes;
+    }
+
+    public void adicionarObservacao(Observacao observacao) {
+        observacoes.add(observacao);
+    }
+
+    public boolean removerObservacao(UUID id) {
+        return observacoes.removeIf(o -> o.getId().equals(id));
+    }
+
+    public void listarObservacoes() {
+        observacoes.forEach(obs -> System.out.println(obs.getData().toString() + ": " + obs.getDescricao()));
+        System.out.println();
     }
 
 }

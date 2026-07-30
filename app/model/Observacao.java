@@ -1,11 +1,21 @@
 package app.model;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Observacao {
     
+    private UUID id;
     private LocalDate data;
     private String descricao;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public LocalDate getData() {
         return data;
