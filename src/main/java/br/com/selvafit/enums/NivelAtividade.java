@@ -2,7 +2,7 @@ package br.com.selvafit.enums;
 
 public enum NivelAtividade {
     
-    SEDENTARIO("Sedentario"),
+    SEDENTARIO("Sedentário"),
     LEVEMENTE_ATIVO("Levemente ativo"),
     MODERADAMENTE_ATIVO("Moderadamente ativo"),
     MUITO_ATIVO("Muito ativo"),

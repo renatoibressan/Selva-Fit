@@ -23,7 +23,7 @@ public class Pessoa {
 
     public void setIdade(int idade) throws DadoInvalidoException {
         if (idade < 0) {
-            throw new DadoInvalidoException("Idade invalida!");
+            throw new DadoInvalidoException("Idade inválida!");
         }
         this.idade = idade;
     }

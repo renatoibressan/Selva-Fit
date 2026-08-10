@@ -12,14 +12,15 @@ import java.util.UUID;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import br.com.selvafit.exception.UsuarioNaoEncontradoException;
 import br.com.selvafit.model.Usuario;
-import br.com.selvafit.repository.interfaces.ObjectRepository;
+import br.com.selvafit.repository.interfaces.Repository;
 import br.com.selvafit.util.JsonUtil;
 
-public class UsuarioRepository implements ObjectRepository<Usuario> {
+public class UsuarioRepository implements Repository<Usuario> {
     
     private final ObjectMapper mapper = JsonUtil.getMapper();
-    private final Path arquivo = Paths.get("data", "src/main/java/br/com/selvafit/dataset/json/usuarios.json");
+    private final Path arquivo = Paths.get("data", "usuarios.json");
     private List<Usuario> usuarios;
 
     private List<Usuario> carregar() {
@@ -29,7 +30,7 @@ public class UsuarioRepository implements ObjectRepository<Usuario> {
             }
             return mapper.readValue(arquivo.toFile(), new TypeReference<List<Usuario>>() {});
         } catch (IOException e) {
-            throw new RuntimeException("Erro ao carregar usuarios: ", e);
+            throw new RuntimeException("Erro ao carregar usuários: ", e);
         }
     }   
 
@@ -38,7 +39,7 @@ public class UsuarioRepository implements ObjectRepository<Usuario> {
             Files.createDirectories(arquivo.getParent());
             mapper.writeValue(arquivo.toFile(), usuarios);
         } catch (IOException e) {
-            throw new RuntimeException("Erro ao salvar usuarios: ", e);
+            throw new RuntimeException("Erro ao salvar usuários: ", e);
         }
     }
 
@@ -60,14 +61,20 @@ public class UsuarioRepository implements ObjectRepository<Usuario> {
     }
 
     @Override
-    public List<Usuario> buscarTodos() {
+    public List<Usuario> listarTodos() {
         return new ArrayList<>(usuarios);
     }
 
     @Override
-    public boolean existe(UUID id) {
-        return usuarios.stream()
-                        .anyMatch(u -> u.getId().equals(id));
+    public void atualizar(Usuario usuario) {
+        for (int i = 0; i < usuarios.size(); i++) {
+            if (usuarios.get(i).getId().equals(usuario.getId())) {
+                usuarios.set(i, usuario);
+                salvarArquivo();
+                return;
+            }
+        }
+        throw new UsuarioNaoEncontradoException("Usuário " + usuario.getId() + " não encontrado!");
     }
 
     @Override

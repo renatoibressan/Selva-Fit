@@ -51,7 +51,7 @@ public class Usuario extends Pessoa {
     @Override
     public void setIdade(int idade) throws DadoInvalidoException {
         if (idade < 0) {
-            throw new DadoInvalidoException("Idade invalida!");
+            throw new DadoInvalidoException("Idade inválida!");
         }
         this.idade = idade;
     }
@@ -72,7 +72,7 @@ public class Usuario extends Pessoa {
 
     public void setAltura(double altura) throws DadoInvalidoException {
         if (altura <= 0.0) {
-            throw new DadoInvalidoException("Altura invalida!");
+            throw new DadoInvalidoException("Altura inválida!");
         }
         this.altura = altura;
     }
@@ -83,7 +83,7 @@ public class Usuario extends Pessoa {
 
     public void setPeso(double peso) throws DadoInvalidoException {
         if (peso <= 0.0) {
-            throw new DadoInvalidoException("Peso invalido!");
+            throw new DadoInvalidoException("Peso inválido!");
         }
         this.peso = peso;
     }

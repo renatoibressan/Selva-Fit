@@ -46,7 +46,7 @@ public class AvaliacaoFisica {
 
     public void setPeso(double peso) throws DadoInvalidoException {
         if (peso <= 0.0) {
-            throw new DadoInvalidoException("Peso invalido!");
+            throw new DadoInvalidoException("Peso inválido!");
         }
         this.peso = peso;
     }
@@ -57,7 +57,7 @@ public class AvaliacaoFisica {
 
     public void setCintura(double cintura) throws DadoInvalidoException {
         if (cintura <= 0.0) {
-            throw new DadoInvalidoException("Medida invalida!");
+            throw new DadoInvalidoException("Medida inválida!");
         }
         this.cintura = cintura;
     }
@@ -68,7 +68,7 @@ public class AvaliacaoFisica {
 
     public void setPeito(double peito) throws DadoInvalidoException {
         if (peito <= 0.0) {
-            throw new DadoInvalidoException("Medida invalida!");
+            throw new DadoInvalidoException("Medida inválida!");
         }
         this.peito = peito;
     }
@@ -79,7 +79,7 @@ public class AvaliacaoFisica {
 
     public void setBraco(double braco) throws DadoInvalidoException {
         if (braco <= 0.0) {
-            throw new DadoInvalidoException("Medida invalida!");
+            throw new DadoInvalidoException("Medida inválida!");
         }
         this.braco = braco;
     }
@@ -90,7 +90,7 @@ public class AvaliacaoFisica {
 
     public void setQuadril(double quadril) throws DadoInvalidoException {
         if (quadril <= 0.0) {
-            throw new DadoInvalidoException("Medida invalida!");
+            throw new DadoInvalidoException("Medida inválida!");
         }
         this.quadril = quadril;
     }
@@ -101,7 +101,7 @@ public class AvaliacaoFisica {
 
     public void setCoxa(double coxa) throws DadoInvalidoException {
         if (coxa <= 0.0) {
-            throw new DadoInvalidoException("Medida invalida!");
+            throw new DadoInvalidoException("Medida inválida!");
         }
         this.coxa = coxa;
     }
@@ -112,7 +112,7 @@ public class AvaliacaoFisica {
 
     public void setPercentualGordura(double percentualGordura) throws DadoInvalidoException {
         if (percentualGordura < 0.0 || percentualGordura > 100.0) {
-            throw new DadoInvalidoException("Percentual invalido!");
+            throw new DadoInvalidoException("Percentual inválido!");
         }
         this.percentualGordura = percentualGordura;
     }

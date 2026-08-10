@@ -4,10 +4,10 @@ public enum Objetivo {
 
     EMAGRECIMENTO("Emagrecimento"),
     HIPERTROFIA("Hipertrofia"),
-    RECOMPOSICAO_CORPORAL("Recomposicao Corporal"),
-    MANUTENCAO("Manutencao"),
-    GANHO_DE_FORCA("Ganho de Forca"),
-    CONDICIONAMENTO_FISICO("Condicionamento Fisico");
+    RECOMPOSICAO_CORPORAL("Recomposição Corporal"),
+    MANUTENCAO("Manutenção"),
+    GANHO_DE_FORCA("Ganho de Força"),
+    CONDICIONAMENTO_FISICO("Condicionamento Físico");
 
     private final String descricao;
 

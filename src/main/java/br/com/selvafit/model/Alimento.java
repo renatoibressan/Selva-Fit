@@ -24,7 +24,7 @@ public class Alimento {
 
     public void setCalorias(double calorias) throws DadoInvalidoException {
         if (calorias <= 0.0) {
-            throw new DadoInvalidoException("Quantidade invalida!");
+            throw new DadoInvalidoException("Medida inválida!");
         }
         this.calorias = calorias;
     }
@@ -35,7 +35,7 @@ public class Alimento {
 
     public void setProteinas(double proteinas) throws DadoInvalidoException {
         if (proteinas <= 0.0) {
-            throw new DadoInvalidoException("Quantidade invalida!");
+            throw new DadoInvalidoException("Medida inválida!");
         }
         this.proteinas = proteinas;
     }
@@ -46,7 +46,7 @@ public class Alimento {
 
     public void setCarboidratos(double carboidratos) throws DadoInvalidoException {
         if (carboidratos <= 0.0) {
-            throw new DadoInvalidoException("Quantidade invalida!");
+            throw new DadoInvalidoException("Medida inválida!");
         }
         this.carboidratos = carboidratos;
     }
@@ -57,7 +57,7 @@ public class Alimento {
 
     public void setGorduras(double gorduras) throws DadoInvalidoException {
         if (gorduras <= 0.0) {
-            throw new DadoInvalidoException("Quantidade invalida!");
+            throw new DadoInvalidoException("Medida inválida!");
         }
         this.gorduras = gorduras;
     }
