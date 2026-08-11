@@ -21,6 +21,7 @@ public class JsonUsuarioRepository implements Repository<Usuario> {
     
     private final ObjectMapper mapper = JsonUtil.getMapper();
     private final Path arquivo = Paths.get("data", "usuarios.json");
+
     private List<Usuario> usuarios;
 
     private List<Usuario> carregar() {
@@ -28,7 +29,8 @@ public class JsonUsuarioRepository implements Repository<Usuario> {
             if (Files.notExists(arquivo)) {
                 return new ArrayList<>();
             }
-            return mapper.readValue(arquivo.toFile(), new TypeReference<List<Usuario>>() {});
+            return mapper.readValue(arquivo.toFile(), 
+                                    new TypeReference<List<Usuario>>() {});
         } catch (IOException e) {
             throw new RuntimeException("Erro ao carregar usuários: ", e);
         }
@@ -37,7 +39,10 @@ public class JsonUsuarioRepository implements Repository<Usuario> {
     private void salvarArquivo() {
         try {
             Files.createDirectories(arquivo.getParent());
-            mapper.writeValue(arquivo.toFile(), usuarios);
+            mapper.writeValue(
+                arquivo.toFile(), 
+                usuarios
+            );
         } catch (IOException e) {
             throw new RuntimeException("Erro ao salvar usuários: ", e);
         }
@@ -56,7 +61,10 @@ public class JsonUsuarioRepository implements Repository<Usuario> {
     @Override
     public Optional<Usuario> buscarPorId(UUID id) {
         return usuarios.stream()
-                        .filter(u -> u.getId().equals(id))
+                        .filter(
+                            u -> 
+                            u.getId().equals(id)
+                        )
                         .findFirst();
     }
 
@@ -68,7 +76,11 @@ public class JsonUsuarioRepository implements Repository<Usuario> {
     @Override
     public void atualizar(Usuario usuario) {
         for (int i = 0; i < usuarios.size(); i++) {
-            if (usuarios.get(i).getId().equals(usuario.getId())) {
+            if (usuarios.get(i)
+                        .getId()
+                        .equals(
+                            usuario.getId()
+                        )) {
                 usuarios.set(i, usuario);
                 salvarArquivo();
                 return;

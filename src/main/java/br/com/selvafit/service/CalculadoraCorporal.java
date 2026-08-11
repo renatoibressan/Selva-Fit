@@ -1,12 +1,11 @@
 package br.com.selvafit.service;
 
+import br.com.selvafit.dto.Macronutrientes;
 import br.com.selvafit.enums.NivelAtividade;
 import br.com.selvafit.enums.SexoBiologico;
 import br.com.selvafit.model.Usuario;
 
 public class CalculadoraCorporal {
-    
-    public record Macronutrientes(double proteinas, double carboidratos, double gorduras) {}
 
     public double calcularIMC(Usuario usuario) {
         return usuario.getPeso() / (usuario.getAltura() * usuario.getAltura());
@@ -64,7 +63,11 @@ public class CalculadoraCorporal {
         calorias += gorduras * 9.0;
         calorias = get - calorias;
         double carboidratos = calorias / 4.0;
-        return new Macronutrientes(proteinas, carboidratos, gorduras);
+        return new Macronutrientes(
+            proteinas, 
+            carboidratos, 
+            gorduras
+        );
     }
 
 }

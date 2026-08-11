@@ -37,57 +37,71 @@ public class RelatorioService {
                                             .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário " + usuarioId + " não encontrado!"));
         List<AvaliacaoFisica> avaliacoes = avaliacaoRepository.listarTodos()
                                                             .stream()
-                                                            .filter(a -> a.getUsuarioId().equals(usuarioId))
+                                                            .filter(
+                                                                a -> 
+                                                                a.getUsuarioId()
+                                                                .equals(usuarioId))
                                                             .sorted(Comparator.comparing(AvaliacaoFisica::getData))
                                                             .toList();
-        String nomeUsuario = usuario.getNome();
-        LocalDate primeiraAvaliacao = avaliacoes.getFirst().getData();
-        LocalDate ultimaAvaliacao = avaliacoes.getLast().getData();
-        int quantidadeAvaliacoes = avaliacoes.size();
-        double pesoInicial = avaliacoes.getFirst().getPeso();
-        double pesoAtual = avaliacoes.getLast().getPeso();
-        double variacaoPeso = Math.abs(pesoAtual - pesoInicial);
-        return new ResumoRelatorio(nomeUsuario, primeiraAvaliacao, ultimaAvaliacao, quantidadeAvaliacoes, pesoInicial, pesoAtual, variacaoPeso);
+        return new ResumoRelatorio(
+            usuario.getNome(), 
+            avaliacoes.getFirst().getData(), 
+            avaliacoes.getLast().getData(), 
+            avaliacoes.size(), 
+            avaliacoes.getFirst().getPeso(), 
+            avaliacoes.getLast().getPeso(), 
+            avaliacoes.getLast().getPeso() - avaliacoes.getFirst().getPeso()
+        );
+    }
+    
+    public ResumoCorporal gerarResumoCorporal(UUID usuarioId) {
+        List<AvaliacaoFisica> avaliacoes = avaliacaoRepository.listarTodos()
+                                                            .stream()
+                                                            .filter(
+                                                                a -> 
+                                                                a.getUsuarioId()
+                                                                .equals(usuarioId))
+                                                            .sorted(Comparator.comparing(AvaliacaoFisica::getData))
+                                                            .toList();
+        return new ResumoCorporal(
+            avaliacoes.getFirst().getPeso(), 
+            avaliacoes.getLast().getPeso(), 
+            avaliacoes.getLast().getPeso() - avaliacoes.getFirst().getPeso(), 
+            avaliacoes.getFirst().getPercentualGordura(), 
+            avaliacoes.getLast().getPercentualGordura(), 
+            avaliacoes.getLast().getPercentualGordura() - avaliacoes.getFirst().getPercentualGordura()
+        );
     }
 
     public List<EvolucaoPeso> gerarEvolucaoPeso(UUID usuarioId, LocalDate inicio, LocalDate fim) {
         return buscarAvaliacoes(usuarioId).stream()
-                                        .filter(a -> !a.getData().isBefore(inicio) && !a.getData().isAfter(fim))
-                                        .map(a -> new EvolucaoPeso(
-                                            a.getData(), 
-                                            a.getPeso()
-                                        ))
+                                        .filter(a -> 
+                                            !a.getData().isBefore(inicio) 
+                                            && !a.getData().isAfter(fim))
+                                        .map(a -> 
+                                            new EvolucaoPeso(
+                                                a.getData(), 
+                                                a.getPeso()
+                                            ))
                                         .toList();
     }
 
     public List<EvolucaoMedidas> gerarEvolucaoMedidas(UUID usuarioId, LocalDate inicio, LocalDate fim) {
         return buscarAvaliacoes(usuarioId).stream()
-                                        .filter(a -> !a.getData().isBefore(inicio) && !a.getData().isAfter(fim))
-                                        .map(a -> new EvolucaoMedidas(
-                                            a.getData(), 
-                                            a.getCintura(), 
-                                            a.getPeito(), 
-                                            a.getBraco(), 
-                                            a.getQuadril(), 
-                                            a.getCoxa(), 
-                                            a.getPanturrilha()
-                                        ))
+                                        .filter(a -> 
+                                            !a.getData().isBefore(inicio) 
+                                            && !a.getData().isAfter(fim))
+                                        .map(a -> 
+                                            new EvolucaoMedidas(
+                                                a.getData(), 
+                                                a.getCintura(), 
+                                                a.getPeito(), 
+                                                a.getBraco(), 
+                                                a.getQuadril(), 
+                                                a.getCoxa(), 
+                                                a.getPanturrilha()
+                                            ))
                                         .toList();
-    }
-
-    public ResumoCorporal gerarResumoCorporal(UUID usuarioId) {
-        List<AvaliacaoFisica> avaliacoes = avaliacaoRepository.listarTodos()
-                                                            .stream()
-                                                            .filter(a -> a.getUsuarioId().equals(usuarioId))
-                                                            .sorted(Comparator.comparing(AvaliacaoFisica::getData))
-                                                            .toList();
-        double pesoInicial = avaliacoes.getFirst().getPeso();
-        double pesoAtual = avaliacoes.getLast().getPeso();
-        double variacaoPeso = Math.abs(pesoAtual - pesoInicial);
-        double percentualGorduraInicial = avaliacoes.getFirst().getPercentualGordura();
-        double percentualGorduraAtual = avaliacoes.getLast().getPercentualGordura();
-        double variacaoPercentualGordura = Math.abs(percentualGorduraAtual - percentualGorduraInicial);
-        return new ResumoCorporal(pesoInicial, pesoAtual, variacaoPeso, percentualGorduraInicial, percentualGorduraAtual, variacaoPercentualGordura);
     }
 
 }

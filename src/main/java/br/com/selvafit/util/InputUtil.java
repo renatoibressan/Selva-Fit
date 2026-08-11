@@ -6,20 +6,20 @@ public class InputUtil {
     
     public static String lerString(String mensagem, Scanner sc) {
         System.out.print(mensagem);
-        String txt = sc.nextLine();
-        return txt;
+        String val = sc.nextLine();
+        return val;
     }
 
     public static int lerInt(String mensagem, Scanner sc) {
-        int num;
+        int val;
         System.out.print(mensagem);
         while (!sc.hasNextInt()) {
             System.out.println("Entrada invalida!");
             sc.next();
             System.out.print(mensagem);
         }
-        num = sc.nextInt();
-        return num;
+        val = sc.nextInt();
+        return val;
     }
     
 }

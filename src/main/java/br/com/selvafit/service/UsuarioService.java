@@ -23,7 +23,9 @@ public class UsuarioService {
 
     public void editarUsuario(UUID id, UsuarioUpdate dados) throws DadoInvalidoException {
         Usuario usuario = repository.buscarPorId(id)
-                                    .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário " + id + " não encontrado!"));
+                                    .orElseThrow(
+                                        () -> 
+                                        new UsuarioNaoEncontradoException("Usuário " + id + " não encontrado!"));
         usuario.setNome(dados.nome());
         usuario.setIdade(dados.idade());
         usuario.setAltura(dados.altura());
@@ -36,7 +38,9 @@ public class UsuarioService {
 
     public Usuario buscarPorId(UUID id) {
         return repository.buscarPorId(id)
-                        .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário " + id + " não encontrado!"));
+                        .orElseThrow(
+                            () -> 
+                            new UsuarioNaoEncontradoException("Usuário " + id + " não encontrado!"));
     }
 
     public List<Usuario> listarUsuarios() {
@@ -46,9 +50,14 @@ public class UsuarioService {
     public Usuario buscarPorNome(String nome) {
         return repository.listarTodos()
                         .stream()
-                        .filter(u -> u.getNome().equalsIgnoreCase(nome))
+                        .filter(
+                            u -> 
+                            u.getNome()
+                            .equalsIgnoreCase(nome))
                         .findFirst()
-                        .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário " + nome + " não encontrado!"));
+                        .orElseThrow(
+                            () -> 
+                            new UsuarioNaoEncontradoException("Usuário " + nome + " não encontrado!"));
     }
 
     public void removerUsuario(UUID id) {

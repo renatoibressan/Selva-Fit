@@ -20,6 +20,7 @@ public class AvaliacaoFisica {
     private double coxa;
     private double panturrilha;
     private double percentualGordura;
+    
     private List<Observacao> observacoes;
 
     public AvaliacaoFisica() {

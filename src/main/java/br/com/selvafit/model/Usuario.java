@@ -9,7 +9,7 @@ import br.com.selvafit.enums.Objetivo;
 import br.com.selvafit.enums.SexoBiologico;
 import br.com.selvafit.exception.DadoInvalidoException;
 
-public class Usuario extends Pessoa {
+public class Usuario {
 
     private UUID id;
     private String nome;
@@ -19,6 +19,7 @@ public class Usuario extends Pessoa {
     private double peso;
     private Objetivo objetivo;
     private NivelAtividade nivelAtividade;
+
     private List<AvaliacaoFisica> avaliacoes;
 
     public Usuario() {
@@ -32,36 +33,30 @@ public class Usuario extends Pessoa {
     public void setId(UUID id) {
         this.id = id;
     }
-
-    @Override
+    
     public String getNome() {
         return nome;
     }
-
-    @Override
+    
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    @Override
+    
     public int getIdade() {
         return idade;
     }
-
-    @Override
+    
     public void setIdade(int idade) throws DadoInvalidoException {
         if (idade < 0) {
             throw new DadoInvalidoException("Idade inválida!");
         }
         this.idade = idade;
     }
-
-    @Override
+    
     public SexoBiologico getSexo() {
         return sexo;
     }
-
-    @Override
+    
     public void setSexo(SexoBiologico sexo) {
         this.sexo = sexo;
     }

@@ -28,7 +28,8 @@ public class JsonAvaliacaoRepository implements Repository<AvaliacaoFisica> {
             if (Files.notExists(arquivo)) {
                 return new ArrayList<>();
             }
-            return mapper.readValue(arquivo.toFile(), new TypeReference<List<AvaliacaoFisica>>() {});
+            return mapper.readValue(arquivo.toFile(), 
+                                    new TypeReference<List<AvaliacaoFisica>>() {});
         } catch (IOException e) {
             throw new RuntimeException("Erro ao carregar avaliações: ", e);
         }
@@ -37,7 +38,10 @@ public class JsonAvaliacaoRepository implements Repository<AvaliacaoFisica> {
     private void salvarArquivo() {
         try {
             Files.createDirectories(arquivo.getParent());
-            mapper.writeValue(arquivo.toFile(), avaliacoes);
+            mapper.writeValue(
+                arquivo.toFile(), 
+                avaliacoes
+            );
         } catch (IOException e) {
             throw new RuntimeException("Erro ao salvar avaliações: ", e);
         }
@@ -56,7 +60,10 @@ public class JsonAvaliacaoRepository implements Repository<AvaliacaoFisica> {
     @Override
     public Optional<AvaliacaoFisica> buscarPorId(UUID id) {
         return avaliacoes.stream()
-                        .filter(a -> a.getId().equals(id))
+                        .filter(
+                            a -> 
+                            a.getId().equals(id)
+                        )
                         .findFirst();
     }
 
@@ -68,7 +75,11 @@ public class JsonAvaliacaoRepository implements Repository<AvaliacaoFisica> {
     @Override
     public void atualizar(AvaliacaoFisica avaliacao) {
         for (int i = 0; i < avaliacoes.size(); i++) {
-            if (avaliacoes.get(i).getId().equals(avaliacao.getId())) {
+            if (avaliacoes.get(i)
+                        .getId()
+                        .equals(
+                            avaliacao.getId()
+                        )) {
                 avaliacoes.set(i, avaliacao);
                 salvarArquivo();
                 return;

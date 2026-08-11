@@ -6,8 +6,11 @@ import java.util.List;
 public class Refeicao {
     
     private List<Alimento> cafeManha;
+    
     private List<Alimento> lancheTarde;
+    
     private List<Alimento> almoco;
+
     private List<Alimento> jantar;
 
     public Refeicao() {
