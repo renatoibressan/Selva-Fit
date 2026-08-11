@@ -10,6 +10,7 @@ import br.com.selvafit.exception.DadoInvalidoException;
 public class AvaliacaoFisica {
     
     private UUID id;
+    private UUID usuarioId;
     private LocalDate data;
     private double peso;
     private double cintura;
@@ -17,6 +18,7 @@ public class AvaliacaoFisica {
     private double braco;
     private double quadril;
     private double coxa;
+    private double panturrilha;
     private double percentualGordura;
     private List<Observacao> observacoes;
 
@@ -30,6 +32,14 @@ public class AvaliacaoFisica {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public UUID getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(UUID usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public LocalDate getData() {
@@ -104,6 +114,17 @@ public class AvaliacaoFisica {
             throw new DadoInvalidoException("Medida inválida!");
         }
         this.coxa = coxa;
+    }
+
+    public double getPanturrilha() {
+        return panturrilha;
+    }
+
+    public void setPanturrilha(double panturrilha) throws DadoInvalidoException {
+        if (panturrilha <= 0.0) {
+            throw new DadoInvalidoException("Medida inválida!");
+        }
+        this.panturrilha = panturrilha;
     }
 
     public double getPercentualGordura() {

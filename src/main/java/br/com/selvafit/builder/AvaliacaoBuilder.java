@@ -21,6 +21,11 @@ public class AvaliacaoBuilder {
         return this;
     }
 
+    public AvaliacaoBuilder usuarioId(UUID usuarioId) {
+        avaliacao.setUsuarioId(usuarioId);
+        return this;
+    } 
+
     public AvaliacaoBuilder data(LocalDate data) {
         avaliacao.setData(data);
         return this;
@@ -53,6 +58,11 @@ public class AvaliacaoBuilder {
 
     public AvaliacaoBuilder coxa(double coxa) throws DadoInvalidoException {
         avaliacao.setCoxa(coxa);
+        return this;
+    }
+
+    public AvaliacaoBuilder panturrilha(double panturrilha) throws DadoInvalidoException {
+        avaliacao.setPanturrilha(panturrilha);
         return this;
     }
 

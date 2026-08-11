@@ -1,13 +1,14 @@
 package br.com.selvafit.dto;
 
-public record AvaliacaoUpdate(
-        double peso,
+import java.time.LocalDate;
+
+public record EvolucaoMedidas(
+        LocalDate data,
         double cintura,
         double peito,
         double braco,
         double quadril,
         double coxa,
-        double panturrilha,
-        double percentualGordura
+        double panturrilha
 ) {
 }

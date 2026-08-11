@@ -17,7 +17,7 @@ import br.com.selvafit.model.Usuario;
 import br.com.selvafit.repository.interfaces.Repository;
 import br.com.selvafit.util.JsonUtil;
 
-public class UsuarioRepository implements Repository<Usuario> {
+public class JsonUsuarioRepository implements Repository<Usuario> {
     
     private final ObjectMapper mapper = JsonUtil.getMapper();
     private final Path arquivo = Paths.get("data", "usuarios.json");
@@ -43,7 +43,7 @@ public class UsuarioRepository implements Repository<Usuario> {
         }
     }
 
-    public UsuarioRepository() {
+    public JsonUsuarioRepository() {
         usuarios = carregar();
     }
     

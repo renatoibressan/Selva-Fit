@@ -30,6 +30,7 @@ public class AvaliacaoService {
         avaliacao.setBraco(dados.braco());
         avaliacao.setQuadril(dados.quadril());
         avaliacao.setCoxa(dados.coxa());
+        avaliacao.setPanturrilha(dados.panturrilha());
         avaliacao.setPercentualGordura(dados.percentualGordura());
         repository.atualizar(avaliacao);
     }

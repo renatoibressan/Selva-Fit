@@ -17,7 +17,7 @@ import br.com.selvafit.model.AvaliacaoFisica;
 import br.com.selvafit.repository.interfaces.Repository;
 import br.com.selvafit.util.JsonUtil;
 
-public class AvaliacaoRepository implements Repository<AvaliacaoFisica> {
+public class JsonAvaliacaoRepository implements Repository<AvaliacaoFisica> {
     
     private final ObjectMapper mapper = JsonUtil.getMapper();
     private final Path arquivo = Paths.get("data", "avaliacoes.json");
@@ -43,7 +43,7 @@ public class AvaliacaoRepository implements Repository<AvaliacaoFisica> {
         }
     }
 
-    public AvaliacaoRepository() {
+    public JsonAvaliacaoRepository() {
         avaliacoes = carregar();
     }
 
